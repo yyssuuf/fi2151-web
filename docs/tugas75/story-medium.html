@@ -1,0 +1,104 @@
+<h2>Catatan singkat pekan keenam PGDA: gerak melingkar beraturan dan pendulum sudut besar</h2>
+
+<p>Pekan ini saya belajar dua topik yang terlihat sederhana: gerak melingkar beraturan dan pendulum sudut besar. Ternyata keduanya menyimpan pelajaran yang sama: sebuah pendekatan yang terlihat rapi bisa gagal kalau syaratnya tidak terpenuhi.</p>
+
+<p>Tulisan ini merangkum materi, tugas, dan hasil simulasi yang saya jalankan.</p>
+
+<h2>Gerak melingkar beraturan</h2>
+
+<p>Gerak melingkar beraturan adalah gerak pada lintasan lingkaran dengan kelajuan tetap. Jarak ke pusat selalu sama, kecepatan selalu menyinggung lintasan, dan percepatan selalu mengarah ke pusat.</p>
+
+<p>Posisi benda bisa ditulis dengan persamaan parametrik:</p>
+
+<p><em>x(t) = x<sub>c</sub> + R cos(ωt + φ<sub>0</sub>)</em></p>
+
+<p><em>y(t) = y<sub>c</sub> + R sin(ωt + φ<sub>0</sub>)</em></p>
+
+<p>Turunannya memberi percepatan yang selalu menuju pusat:</p>
+
+<p><em>a<sub>x</sub> = −ω²(x − x<sub>c</sub>), &nbsp;&nbsp; a<sub>y</sub> = −ω²(y − y<sub>c</sub>)</em></p>
+
+<p>Satu putaran penuh memerlukan waktu</p>
+
+<p><em>T = 2π/ω</em></p>
+
+<p>Yang penting: <strong>gaya sentripetal bukan gaya baru.</strong> Ia adalah resultan dari gaya-gaya yang memang bekerja pada benda. Pada kasus yang berbeda, gaya itu bisa berupa gravitasi, gesekan, tegangan tali, gaya normal, atau gaya Lorentz.</p>
+
+<h2>Lima contoh dan gaya sentripetalnya</h2>
+
+<img src="https://yyssuuf.github.io/fi2151-web/tugas75/figs/ucm_examples.png" alt="Lima contoh gerak melingkar beraturan dan gaya sentripetalnya">
+
+<p><em>Gambar 1. Lima contoh gerak melingkar beraturan. Panah merah adalah gaya sentripetal.</em></p>
+
+<ul>
+  <li>Bulan mengorbit Bumi — gravitasi</li>
+  <li>Mobil menikung — gesekan statis ban–jalan</li>
+  <li>Bola di ujung tali — tegangan tali</li>
+  <li>Elektron dalam medan magnet — gaya Lorentz</li>
+  <li>Drum mesin cuci berputar — gaya normal dinding drum</li>
+</ul>
+
+<p>Dari lima contoh ini saya belajar satu hal: <strong>modelnya sama, gaya yang berperan berbeda.</strong> Itulah inti pemodelan fisika.</p>
+
+<h2>Pendulum sudut besar</h2>
+
+<p>Pendulum sederhana memiliki persamaan gerak</p>
+
+<p><em>d²θ/dt² = −(g/R) sin θ</em></p>
+
+<p>Persamaan ini nonlinear karena adanya sin θ. Untuk sudut kecil kita memakai pendekatan sin θ ≈ θ, sehingga diperoleh osilator harmonik dengan periode</p>
+
+<p><em>T<sub>0</sub> = 2π √(R/g)</em></p>
+
+<p>Untuk sudut besar, pendekatan itu tidak lagi akurat. Saya menyelesaikannya secara numerik dengan metode Euler:</p>
+
+<p><em>ω<sub>n+1</sub> = ω<sub>n</sub> − (g/R) sin θ<sub>n</sub> Δt</em></p>
+
+<p><em>θ<sub>n+1</sub> = θ<sub>n</sub> + ω<sub>n+1</sub> Δt</em></p>
+
+<p>Saya memakai g = 9.81 m/s², R = 0.248 m (sehingga T<sub>0</sub> = 1 s), dan Δt = 0.001 s. Amplitudo awal θ<sub>0</sub> = aπ, dengan a divariasikan dari 0.1 sampai 0.99.</p>
+
+<h2>Hasil: dari 0.1 sampai 0.99</h2>
+
+<img src="https://yyssuuf.github.io/fi2151-web/tugas75/figs/pendulum_theta.png" alt="Perbandingan solusi teoretis dan numerik">
+
+<p><em>Gambar 2. Solusi teoretis sudut kecil (biru) dan numerik (putus-putus merah) untuk empat nilai a.</em></p>
+
+<img src="https://yyssuuf.github.io/fi2151-web/tugas75/figs/pendulum_period.png" alt="Rasio periode terhadap a">
+
+<p><em>Gambar 3. Periode pendulum bertambah pada sudut besar.</em></p>
+
+<p>Untuk a = 0.1, kedua kurva hampir berimpit. Untuk a = 0.5, perbedaan fase sudah terlihat. Untuk a = 0.9 dan 0.99, keduanya bergerak berlawanan fase.</p>
+
+<p>Ringkasnya, T/T<sub>0</sub> naik dari 1.005 pada a = 0.1 menjadi 1.179 pada a = 0.5, lalu 2.070 pada a = 0.9 dan 3.524 pada a = 0.99.</p>
+
+<p><strong>Kenapa?</strong> Untuk θ &gt; 0, nilai sin θ selalu lebih kecil daripada θ. Gaya pemulih sebenarnya lebih lemah daripada prediksi linear, sehingga pendulum butuh waktu lebih lama untuk kembali. Semakin besar amplitudo, semakin besar penyimpangannya. Pada a → 1, pendulum mendekati posisi terbalik dan periodenya meledak.</p>
+
+<p>Sebagai pemeriksaan, periode numerik saya bandingkan dengan solusi eksak (integral eliptik). Selisihnya di bawah 0.001%, jadi kenaikan periode ini memang efek fisis, bukan kesalahan metode.</p>
+
+<h2>Kapan pendekatan sudut kecil masih bagus?</h2>
+
+<ul>
+  <li><strong>a ≤ 0.1</strong> (θ<sub>0</sub> ≤ 18°): sangat bagus, kesalahan periode sekitar 0.5%.</li>
+  <li><strong>a ≈ 0.2–0.3</strong> (θ<sub>0</sub> ≈ 36°–54°): masih untuk perkiraan kasar, kesalahan 2–6%.</li>
+  <li><strong>a ≥ 0.5</strong> (θ<sub>0</sub> ≥ 90°): tidak lagi memadai untuk analisis kuantitatif.</li>
+  <li><strong>a → 1</strong>: periode naik tajam dan pendekatan linear gagal total.</li>
+</ul>
+
+<p>Materi juga menyebut batas |θ| &lt; 0.2 rad (sekitar 11.5°) agar sin θ ≈ θ masih baik. Kalau butuh akurasi tinggi, batasnya bahkan lebih ketat daripada a = 0.1.</p>
+
+<h2>Sudut pandang saya</h2>
+
+<p>Sebelumnya saya menganggap T = 2π√(R/g) sebagai rumus periode pendulum, bukan sebagai pendekatan. Simulasi ini membuat saya sadar bahwa rumus itu punya syarat tersembunyi: sudutnya harus kecil.</p>
+
+<p>Dua hal yang saya bawa dari pekan ini. Pertama, model yang sama bisa muncul di sistem yang sangat berbeda — yang berubah hanya gaya yang berperan. Kedua, metode numerik sederhana seperti Euler sudah cukup akurat asalkan langkah waktunya kecil; yang perlu diwaspadai justru asumsi fisika di dalam modelnya.</p>
+
+<p>Ke depannya saya ingin mencoba menambahkan redaman, membandingkan Euler dengan metode lain, dan membuat animasi agar perubahan fase lebih mudah dilihat.</p>
+
+<h2>Referensi</h2>
+
+<ol>
+  <li>Sparisoma Viridi, "Uniform circular motion", endap, 2026. <a href="https://endap.github.io/26j96/">https://endap.github.io/26j96/</a></li>
+  <li>Sparisoma Viridi, "Large angle pendulum", endap, 2026. <a href="https://endap.github.io/26j94/">https://endap.github.io/26j94/</a></li>
+  <li>Rod Pierce, "Small Angle Approximations", Math is Fun, 2026. <a href="https://www.mathsisfun.com/algebra/small-angle-approximations.html">https://www.mathsisfun.com/algebra/small-angle-approximations.html</a></li>
+</ol>
