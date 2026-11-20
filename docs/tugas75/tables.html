@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px;
+    background: #ffffff;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: #181c19;
+  }
+  .card {
+    display: inline-block;
+    background: #ffffff;
+    padding: 10px;
+  }
+  table {
+    border-collapse: collapse;
+    border: 1px solid #ced3ca;
+    background: #ffffff;
+  }
+  #table-examples table { width: 880px; }
+  #table-results table { width: 720px; }
+  th {
+    background: #1f4fd8;
+    color: #ffffff;
+    text-align: left;
+    padding: 13px 16px;
+    font-size: 19px;
+    font-weight: 600;
+  }
+  td {
+    padding: 12px 16px;
+    font-size: 19px;
+    border-bottom: 1px solid #ced3ca;
+  }
+  tbody tr:nth-child(even) td { background: #f1f3ed; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .num { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <div class="card" id="table-examples">
+    <table>
+      <thead>
+        <tr><th>Contoh</th><th>Gaya sentripetal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bulan mengorbit Bumi</td><td>Gravitasi</td></tr>
+        <tr><td>Mobil menikung</td><td>Gesekan statis ban dan jalan</td></tr>
+        <tr><td>Bola di ujung tali</td><td>Tegangan tali</td></tr>
+        <tr><td>Elektron dalam medan magnet</td><td>Gaya Lorentz</td></tr>
+        <tr><td>Drum mesin cuci berputar</td><td>Gaya normal dinding drum</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" id="table-results" style="margin-top: 44px;">
+    <table>
+      <thead>
+        <tr><th>a</th><th>T/T<sub>0</sub></th><th>Deviasi maks 0–1 s (rad)</th></tr>
+      </thead>
+      <tbody class="num">
+        <tr><td>0.1</td><td>1.0052</td><td>0.008</td></tr>
+        <tr><td>0.2</td><td>1.0242</td><td>0.073</td></tr>
+        <tr><td>0.3</td><td>1.0575</td><td>0.254</td></tr>
+        <tr><td>0.4</td><td>1.1076</td><td>0.617</td></tr>
+        <tr><td>0.5</td><td>1.1792</td><td>1.235</td></tr>
+        <tr><td>0.6</td><td>1.2804</td><td>2.166</td></tr>
+        <tr><td>0.7</td><td>1.4269</td><td>3.403</td></tr>
+        <tr><td>0.8</td><td>1.6535</td><td>4.734</td></tr>
+        <tr><td>0.9</td><td>2.0703</td><td>5.647</td></tr>
+        <tr><td>0.99</td><td>3.5235</td><td>5.906</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
